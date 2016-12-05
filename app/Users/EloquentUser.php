@@ -1,6 +1,7 @@
 <?php
 namespace App\Users;
 
+use App\Athletes\EloquentAthlete;
 use App\Models\StandardModel;
 use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
@@ -9,6 +10,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class EloquentUser extends Authenticatable implements User
 {
     use Notifiable, StandardModel;
+
+    /**
+     * @var string
+     */
+    protected $table = self::TABLE;
 
     /**
      * The attributes that are mass assignable.
@@ -90,5 +96,13 @@ class EloquentUser extends Authenticatable implements User
     public function isAdmin()
     {
         return $this->is_admin;
+    }
+
+    /**
+     * @return \App\Athletes\Athlete[]
+     */
+    public function athletes()
+    {
+        return $this->hasMany(EloquentAthlete::class, 'user_id', 'id')->get();
     }
 }

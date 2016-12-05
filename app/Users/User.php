@@ -51,6 +51,11 @@ interface User
     public function isAdmin();
 
     /**
+     * @return \App\Athletes\Athlete[]
+     */
+    public function athletes();
+
+    /**
      * @return \Carbon\Carbon
      */
     public function createdAt();
