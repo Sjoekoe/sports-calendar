@@ -28,9 +28,9 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        require __DIR__ . '../Auth/helpers.php';
+        require '../app/Auth/helpers.php';
 
-        $this->app['auth']->extends('custom', function ($app, $name, array $config) {
+        $this->app['auth']->extend('custom', function ($app, $name, array $config) {
             $guard = new Guard($name, $app['auth']->createUserProvider($config['provider']), $app['session.store']);
             $guard->setCookieJar($app['cookie']);
             $guard->setDispatcher($app['events']);
