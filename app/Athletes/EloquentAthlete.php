@@ -5,10 +5,11 @@ use App\Models\StandardModel;
 use App\Users\EloquentUser;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class EloquentAthlete extends Model implements Athlete
 {
-    use StandardModel;
+    use StandardModel, Notifiable;
 
     /**
      * @var string
