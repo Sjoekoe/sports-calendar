@@ -178,7 +178,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        App\Teams\TeamRepository::class,
+        App\Teams\TeamServiceProvider::class,
         App\Users\UserServiceProvider::class,
     ],
 
