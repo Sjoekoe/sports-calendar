@@ -3,6 +3,8 @@ namespace App\Accounts;
 
 use App\Accommodations\EloquentAccommodation;
 use App\Models\StandardModel;
+use App\Teams\EloquentTeam;
+use App\Types\EloquentType;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
@@ -37,5 +39,21 @@ class EloquentAccount extends Model implements Account
     public function accommodations()
     {
         return $this->hasMany(EloquentAccommodation::class, 'account_id', 'id')->get();
+    }
+
+    /**
+     * @return \App\Teams\Team[]
+     */
+    public function teams()
+    {
+        return $this->hasMany(EloquentTeam::class, 'account_id', 'id')->get();
+    }
+
+    /**
+     * @return \App\Types\Type[]
+     */
+    public function types()
+    {
+        return $this->hasMany(EloquentType::class, 'account_id', 'id')->get();
     }
 }

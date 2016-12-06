@@ -26,6 +26,16 @@ interface Account
     public function accommodations();
 
     /**
+     * @return \App\Teams\Team[]
+     */
+    public function teams();
+
+    /**
+     * @return \App\Types\Type[]
+     */
+    public function types();
+
+    /**
      * @return \Carbon\Carbon
      */
     public function createdAt();

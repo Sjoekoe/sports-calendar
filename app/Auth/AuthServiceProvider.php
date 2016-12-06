@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace App\Auth;
 
 use App\Auth\EloquentUserProvider;
 use App\Auth\Guard;
@@ -28,7 +28,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        require '../app/Auth/helpers.php';
+        require __DIR__ . '/helpers.php';
 
         $this->app['auth']->extend('custom', function ($app, $name, array $config) {
             $guard = new Guard($name, $app['auth']->createUserProvider($config['provider']), $app['session.store']);
