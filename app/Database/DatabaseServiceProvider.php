@@ -3,7 +3,7 @@ namespace App\Database;
 
 use Illuminate\Support\ServiceProvider;
 
-class ModelFactoryServiceProvider extends ServiceProvider
+class DatabaseServiceProvider extends ServiceProvider
 {
     /**
      * @var bool
@@ -13,6 +13,10 @@ class ModelFactoryServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(ModelFactory::class, EloquentModelFactory::class);
+
+        $this->app->singleton(TransactionManager::class, function () {
+            return new EloquentTransactionManager();
+        });
     }
 
     /**
@@ -22,6 +26,7 @@ class ModelFactoryServiceProvider extends ServiceProvider
     {
         return [
             ModelFactory::class,
+            TransactionManager::class,
         ];
     }
 }
