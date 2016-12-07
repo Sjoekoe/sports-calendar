@@ -179,6 +179,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         App\Teams\TeamServiceProvider::class,
+        App\Types\TypeServiceProvider::class,
         App\Users\UserServiceProvider::class,
     ],
 

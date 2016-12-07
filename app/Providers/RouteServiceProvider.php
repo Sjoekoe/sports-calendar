@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Teams\TeamRouteBinding;
+use App\Types\TypeRouteBinding;
 use App\Users\UserRouteBinding;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -26,6 +27,7 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         Route::bind('team', TeamRouteBinding::class);
+        Route::bind('type', TypeRouteBinding::class);
         Route::bind('user', UserRouteBinding::class);
 
         parent::boot();
