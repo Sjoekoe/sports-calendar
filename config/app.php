@@ -178,6 +178,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        App\Subscriptions\SubscriptionServiceProvider::class,
         App\Teams\TeamServiceProvider::class,
         App\Types\TypeServiceProvider::class,
         App\Users\UserServiceProvider::class,
