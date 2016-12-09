@@ -179,6 +179,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         App\Addresses\AddressServiceProvider::class,
+        App\Athletes\AthleteServiceProvider::class,
         App\Database\DatabaseServiceProvider::class,
         App\Reservations\ReservationServiceProvider::class,
         App\Rosters\RosterServiceProvider::class,
