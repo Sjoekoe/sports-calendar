@@ -178,6 +178,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        App\Addresses\AddressServiceProvider::class,
         App\Database\DatabaseServiceProvider::class,
         App\Reservations\ReservationServiceProvider::class,
         App\Rosters\RosterServiceProvider::class,
