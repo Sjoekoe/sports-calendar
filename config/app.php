@@ -178,6 +178,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        App\Accounts\AccountServiceProvider::class,
         App\Addresses\AddressServiceProvider::class,
         App\Athletes\AthleteServiceProvider::class,
         App\Database\DatabaseServiceProvider::class,

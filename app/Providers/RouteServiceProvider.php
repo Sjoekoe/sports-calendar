@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Accounts\AccountRouteBinding;
 use App\Addresses\AddressRouteBinding;
 use App\Athletes\AthleteRouteBinding;
 use App\Reservations\ReservationRouteBinding;
@@ -32,6 +33,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Route::bind('account', AccountRouteBinding::class);
         Route::bind('addresses', AddressRouteBinding::class);
         Route::bind('athlete', AthleteRouteBinding::class);
         Route::bind('reservation', ReservationRouteBinding::class);
