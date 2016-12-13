@@ -56,4 +56,20 @@ class EloquentAccount extends Model implements Account
     {
         return $this->hasMany(EloquentType::class, 'account_id', 'id')->get();
     }
+
+    /**
+     * @return string
+     */
+    public function dateFormat()
+    {
+        return $this->date_format;
+    }
+
+    /**
+     * @return string
+     */
+    public function timeFormat()
+    {
+        return $this->time_format;
+    }
 }

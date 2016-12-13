@@ -36,6 +36,16 @@ interface Account
     public function types();
 
     /**
+     * @return string
+     */
+    public function dateFormat();
+
+    /**
+     * @return string
+     */
+    public function timeFormat();
+
+    /**
      * @return \Carbon\Carbon
      */
     public function createdAt();
