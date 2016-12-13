@@ -183,6 +183,7 @@ return [
         App\Addresses\AddressServiceProvider::class,
         App\Athletes\AthleteServiceProvider::class,
         App\Database\DatabaseServiceProvider::class,
+        App\Dates\DateTimeServiceProvider::class,
         App\Reservations\ReservationServiceProvider::class,
         App\Rosters\RosterServiceProvider::class,
         App\Sports\SportServiceProvider::class,

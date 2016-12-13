@@ -61,10 +61,6 @@ trait CanFormatDates
         return $this->dateTimeCreator->dateJavascriptCode($library);
     }
 
-    /**
-     * @param string $library
-     * @return string
-     */
     protected function getTimeJavascriptCode($library = TimeFormat::MOMENTJS)
     {
         return $this->dateTimeCreator->timeJavascriptCode($library);
