@@ -166,8 +166,7 @@ return [
         /*
          * Package Service Providers...
          */
-
-        //
+        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -184,6 +183,7 @@ return [
         App\Athletes\AthleteServiceProvider::class,
         App\Database\DatabaseServiceProvider::class,
         App\Dates\DateTimeServiceProvider::class,
+        App\JWT\TokenServiceProvider::class,
         App\Reservations\ReservationServiceProvider::class,
         App\Rosters\RosterServiceProvider::class,
         App\Sports\SportServiceProvider::class,
