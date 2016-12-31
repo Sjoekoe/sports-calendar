@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Providers;
 
 use App\Accommodations\AccommodationRouteBinding;
@@ -13,8 +12,8 @@ use App\Subscriptions\SubscriptionRouteBinding;
 use App\Teams\TeamRouteBinding;
 use App\Types\TypeRouteBinding;
 use App\Users\UserRouteBinding;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -34,6 +33,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        parent::boot();
+
         Route::bind('accommodation', AccommodationRouteBinding::class);
         Route::bind('account', AccountRouteBinding::class);
         Route::bind('addresses', AddressRouteBinding::class);
@@ -45,8 +46,6 @@ class RouteServiceProvider extends ServiceProvider
         Route::bind('team', TeamRouteBinding::class);
         Route::bind('type', TypeRouteBinding::class);
         Route::bind('user', UserRouteBinding::class);
-
-        parent::boot();
     }
 
     /**

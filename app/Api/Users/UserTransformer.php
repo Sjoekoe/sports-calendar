@@ -1,26 +1,26 @@
 <?php
-namespace App\Testing;
+namespace App\Api\Users;
 
 use App\Users\User;
+use League\Fractal\TransformerAbstract;
 
-trait DefaultIncludes
+class UserTransformer extends TransformerAbstract
 {
     /**
      * @param \App\Users\User $user
-     * @param array $attributes
      * @return array
      */
-    public function includedUser(User $user, array $attributes = [])
+    public function transform(User $user)
     {
-        return array_merge([
+        return [
             'id' => $user->id(),
             'name' => $user->name(),
             'email' => $user->email(),
-            'phone' => $user->phone(),
-            'language' => $user->language(),
             'last_login' => $user->lastLogin()->toIso8601String(),
+            'language' => $user->language(),
+            'phone' => $user->phone(),
             'created_at' => $user->createdAt()->toIso8601String(),
             'updated_at' => $user->updatedAt()->toIso8601String(),
-        ], $attributes);
+        ];
     }
 }

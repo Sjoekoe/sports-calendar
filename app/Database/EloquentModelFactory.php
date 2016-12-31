@@ -1,6 +1,8 @@
 <?php
 namespace App\Database;
 
+use App\Users\EloquentUser;
+use App\Users\User;
 use Illuminate\Database\Eloquent\Factory;
 
 class EloquentModelFactory implements ModelFactory
@@ -8,7 +10,9 @@ class EloquentModelFactory implements ModelFactory
     /**
      * @var array
      */
-    protected $models = [];
+    protected $models = [
+        User::class => EloquentUser::class,
+    ];
 
     /**
      * @var \Illuminate\Database\Eloquent\Factory
