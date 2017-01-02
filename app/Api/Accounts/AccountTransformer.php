@@ -15,6 +15,7 @@ class AccountTransformer extends TransformerAbstract
         return [
             'id' => $account->id(),
             'name' => $account->name(),
+            'email' => $account->email(),
             'date_format' => $account->dateFormat(),
             'time_format' => $account->timeFormat(),
         ];
