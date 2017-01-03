@@ -38,8 +38,9 @@
 
 <script src="js/app.js" type="text/javascript"></script>
 
-@section('scripts')
-@show
-
+@stack('scripts')
+  <script>
+      window.scheduler = window.scheduler || {!! \App\Info\Facades\Info::toJson() !!}
+  </script>
 </body>
 </html>
