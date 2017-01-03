@@ -43,6 +43,6 @@ class EloquentAthleteRepository implements AthleteRepository
      */
     public function delete(Athlete $athlete)
     {
-        $athlete->delete(); 
+        $athlete->delete();
     }
 }

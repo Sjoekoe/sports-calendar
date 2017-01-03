@@ -4,7 +4,6 @@ namespace App\Api\Http\Controllers;
 use App\Api\Athletes\AthleteTransformer;
 use App\Athletes\Athlete;
 use App\Athletes\AthleteRepository;
-use App\Users\User;
 
 class AthleteController extends Controller
 {
@@ -18,19 +17,19 @@ class AthleteController extends Controller
         $this->athletes = $athletes;
     }
 
-    public function index(User $user)
+    public function index()
     {
-        $athletes = $this->athletes->findForUserPaginated($user);
+        $athletes = $this->athletes->findForUserPaginated($this->auth->user());
 
         return $this->response()->paginator($athletes, new AthleteTransformer());
     }
 
-    public function show(User $user, Athlete $athlete)
+    public function show(Athlete $athlete)
     {
         return $this->response()->item($athlete, new AthleteTransformer());
     }
 
-    public function delete(User $user, Athlete $athlete)
+    public function delete(Athlete $athlete)
     {
         $this->athletes->delete($athlete);
 

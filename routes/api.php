@@ -11,12 +11,12 @@ $api->version('v1', function (Router $api) {
             $api->get('/{user}', ['as' => 'show', 'uses' => 'UserController@show']);
             $api->put('/{user}', ['as' => 'update', 'uses' => 'UserController@update']);
             $api->delete('/{user}', ['as' => 'delete', 'uses' => 'UserController@delete']);
+        });
 
-            $api->group(['as' => 'athletes', 'prefix' => '{user}/athletes'], function (Router $api) {
-                $api->get('/', ['as' => 'index', 'uses' => 'AthleteController@index']);
-                $api->get('/{athlete}', ['as' => 'show', 'uses' => 'AthleteController@show']);
-                $api->delete('/{athlete}', ['as' => 'delete', 'uses' => 'AthleteController@delete']);
-            });
+        $api->group(['as' => 'athletes', 'prefix' => 'athletes', 'middleware' => 'api.auth'], function (Router $api) {
+            $api->get('/', ['as' => 'index', 'uses' => 'AthleteController@index']);
+            $api->get('/{athlete}', ['as' => 'show', 'uses' => 'AthleteController@show']);
+            $api->delete('/{athlete}', ['as' => 'delete', 'uses' => 'AthleteController@delete']);
         });
 
         $api->group(['as' => 'accounts', 'prefix' => 'accounts'], function (Router $api) {

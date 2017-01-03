@@ -15,7 +15,7 @@ class AthletesTest extends \TestCase
             'user_id' => $user->id(),
         ]);
 
-        $this->get('/api/users/' . $user->id() . '/athletes', $this->setJWTHeaders($user))
+        $this->get('/api/athletes', $this->setJWTHeaders($user))
             ->seeJsonEquals([
                 'data' => [$this->includedAthlete($athlete)],
                 'meta' => [
@@ -39,7 +39,7 @@ class AthletesTest extends \TestCase
             'user_id' => $user->id(),
         ]);
 
-        $this->get('/api/users/' . $user->id() . '/athletes/' . $athlete->id(), $this->setJWTHeaders($user))
+        $this->get('/api/athletes/' . $athlete->id(), $this->setJWTHeaders($user))
             ->seeJsonEquals([
                 'data' => $this->includedAthlete($athlete),
             ]);
@@ -57,7 +57,7 @@ class AthletesTest extends \TestCase
             'id' => $athlete->id(),
         ]);
 
-        $this->delete('/api/users/' . $user->id() . '/athletes/' . $athlete->id(), $this->setJWTHeaders($user))
+        $this->delete('/api/athletes/' . $athlete->id(), [], $this->setJWTHeaders($user))
             ->assertNoContent();
 
         $this->missingFromDatabase(Athlete::TABLE, [
