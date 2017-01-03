@@ -41,11 +41,12 @@ abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
     }
 
     /**
+     * @param array $attributes
      * @return \App\Users\User
      */
-    public function loginAsUser()
+    public function loginAsUser(array $attributes = [])
     {
-        $user = $this->createUser();
+        $user = $this->createUser($attributes);
 
         $this->be($user);
 

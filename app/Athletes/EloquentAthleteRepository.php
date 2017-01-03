@@ -1,6 +1,8 @@
 <?php
 namespace App\Athletes;
 
+use App\Users\User;
+
 class EloquentAthleteRepository implements AthleteRepository
 {
     /**
@@ -22,5 +24,25 @@ class EloquentAthleteRepository implements AthleteRepository
         return $this->athlete
             ->where('id', $id)
             ->first();
+    }
+
+    /**
+     * @param \App\Users\User $user
+     * @param int $limit
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
+    public function findForUserPaginated(User $user, $limit = 10)
+    {
+        return $this->athlete
+            ->where('user_id', $user->id())
+            ->paginate($limit);
+    }
+
+    /**
+     * @param \App\Athletes\Athlete $athlete
+     */
+    public function delete(Athlete $athlete)
+    {
+        $athlete->delete(); 
     }
 }

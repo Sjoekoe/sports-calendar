@@ -2,6 +2,7 @@
 namespace App\Testing;
 
 use App\Accounts\Account;
+use App\Athletes\Athlete;
 use App\Users\User;
 
 trait DefaultIncludes
@@ -38,6 +39,25 @@ trait DefaultIncludes
             'email' => $account->email(),
             'date_format' => $account->dateFormat(),
             'time_format' => $account->timeFormat(),
+        ], $attributes);
+    }
+
+    /**
+     * @param \App\Athletes\Athlete $athlete
+     * @param array $attributes
+     * @return array
+     */
+    public function includedAthlete(Athlete $athlete, array $attributes = [])
+    {
+        return array_merge([
+            'id' => $athlete->id(),
+            'name' => $athlete->name(),
+            'email' => $athlete->email(),
+            'phone' => $athlete->phone(),
+            'birthday' => $athlete->birthday()->toIso8601String(),
+            'userRelation' => [
+                'data' => $this->includedUser($athlete->user())
+            ]
         ], $attributes);
     }
 }

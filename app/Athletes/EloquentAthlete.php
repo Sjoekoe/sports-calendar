@@ -55,4 +55,12 @@ class EloquentAthlete extends Model implements Athlete
     {
         return $this->belongsTo(EloquentUser::class, 'user_id', 'id')->first();
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function userRelation()
+    {
+        return $this->belongsTo(EloquentUser::class, 'user_id', 'id');
+    }
 }

@@ -2,6 +2,7 @@
 namespace App\Testing;
 
 use App\Accounts\Account;
+use App\Athletes\Athlete;
 use App\Users\User;
 use Carbon\Carbon;
 
@@ -35,6 +36,20 @@ trait CreatesModels
             'email' => 'account@foo.com',
             'date_format' => 'd-m-Y',
             'time_format' => 'H:i'
+        ], $attributes));
+    }
+
+    /**
+     * @param array $attributes
+     * @return \App\Athletes\Athlete
+     */
+    public function createAthlete(array $attributes = [])
+    {
+        return $this->modelFactory->create(Athlete::class, array_merge([
+            'name' => 'John Athlete',
+            'email' => 'athlete@test.com',
+            'phone' => '12345678',
+            'birthday' => Carbon::now(),
         ], $attributes));
     }
 }
