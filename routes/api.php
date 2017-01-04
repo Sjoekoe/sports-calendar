@@ -15,7 +15,9 @@ $api->version('v1', function (Router $api) {
 
         $api->group(['as' => 'athletes', 'prefix' => 'athletes', 'middleware' => 'api.auth'], function (Router $api) {
             $api->get('/', ['as' => 'index', 'uses' => 'AthleteController@index']);
+            $api->post('/', ['as' => 'store', 'uses' => 'AthleteController@store']);
             $api->get('/{athlete}', ['as' => 'show', 'uses' => 'AthleteController@show']);
+            $api->put('/{athlete}', ['as' => 'update', 'uses' => 'AthleteController@update']);
             $api->delete('/{athlete}', ['as' => 'delete', 'uses' => 'AthleteController@delete']);
         });
 

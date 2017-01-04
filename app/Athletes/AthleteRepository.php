@@ -22,4 +22,18 @@ interface AthleteRepository
      * @param \App\Athletes\Athlete $athlete
      */
     public function delete(Athlete $athlete);
+
+    /**
+     * @param \App\Users\User $user
+     * @param array $values
+     * @return \App\Athletes\Athlete
+     */
+    public function create(User $user, array $values);
+
+    /**
+     * @param \App\Athletes\Athlete $athlete
+     * @param array $values
+     * @return \App\Athletes\Athlete
+     */
+    public function update(Athlete $athlete, array $values);
 }

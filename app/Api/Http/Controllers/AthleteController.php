@@ -2,6 +2,7 @@
 namespace App\Api\Http\Controllers;
 
 use App\Api\Athletes\AthleteTransformer;
+use App\Api\Athletes\Requests\StoreAthleteRequest;
 use App\Athletes\Athlete;
 use App\Athletes\AthleteRepository;
 
@@ -24,8 +25,22 @@ class AthleteController extends Controller
         return $this->response()->paginator($athletes, new AthleteTransformer());
     }
 
+    public function store(StoreAthleteRequest $request)
+    {
+        $athlete = $this->athletes->create($this->auth->user(), $request->all());
+
+        return $this->response()->item($athlete, new AthleteTransformer());
+    }
+
     public function show(Athlete $athlete)
     {
+        return $this->response()->item($athlete, new AthleteTransformer());
+    }
+
+    public function update(StoreAthleteRequest $request, Athlete $athlete)
+    {
+        $athlete = $this->athletes->update($athlete, $request->all());
+
         return $this->response()->item($athlete, new AthleteTransformer());
     }
 
