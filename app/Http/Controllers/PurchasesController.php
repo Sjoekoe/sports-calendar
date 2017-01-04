@@ -1,14 +1,14 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Products\Product;
 use Illuminate\Http\Request;
 use Stripe\{Charge, Customer};
 
 class PurchasesController extends Controller
 {
-    public function store(Request $request)
+    public function store(Request $request, Product $product)
     {
-
         $customer = Customer::create([
             'email' => $request->get('stripeEmail'),
             'source' => $request->get('stripeToken'),
@@ -17,7 +17,7 @@ class PurchasesController extends Controller
 
         Charge::create([
             'customer' => $customer->id,
-            'amount' => '5000',
+            'amount' => $product->price(),
             'currency' => 'eur',
         ]);
 

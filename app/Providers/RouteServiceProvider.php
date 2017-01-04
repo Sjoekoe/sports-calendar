@@ -5,6 +5,7 @@ use App\Accommodations\AccommodationRouteBinding;
 use App\Accounts\AccountRouteBinding;
 use App\Addresses\AddressRouteBinding;
 use App\Athletes\AthleteRouteBinding;
+use App\Products\ProductRouteBinding;
 use App\Reservations\ReservationRouteBinding;
 use App\Rosters\RosterRouteBinding;
 use App\Sports\SportRouteBinding;
@@ -39,6 +40,7 @@ class RouteServiceProvider extends ServiceProvider
         Route::bind('account', AccountRouteBinding::class);
         Route::bind('addresses', AddressRouteBinding::class);
         Route::bind('athlete', AthleteRouteBinding::class);
+        Route::bind('product', ProductRouteBinding::class);
         Route::bind('reservation', ReservationRouteBinding::class);
         Route::bind('roster', RosterRouteBinding::class);
         Route::bind('sport', SportRouteBinding::class);

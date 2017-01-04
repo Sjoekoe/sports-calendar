@@ -1,7 +1,5 @@
 <?php
 
-Route::post('/purchases', 'PurchasesController@store');
+Route::post('/purchases/{product}', 'PurchasesController@store');
 
-Route::get('/', function () {
-    return view('home.index');
-});
+Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);

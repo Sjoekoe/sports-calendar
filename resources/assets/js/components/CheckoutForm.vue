@@ -4,16 +4,24 @@
         <input type="hidden" name="stripeToken" v-model="stripeToken">
         <input type="hidden" name="stripeEmail" v-model="stripeEmail">
 
+        <select name="product" v-model="product">
+            <option v-for="product in products" :value="product.id">
+                {{ product.name }} &mdash; &euro;{{ product.price / 100 }}
+            </option>
+        </select>
+
         <button type="submit" @click.prevent="buy">Checkout</button>
     </form>
 </template>
 
 <script>
     export default {
+        props: ['products'],
         data() {
             return {
                 stripeEmail: '',
-                stripeToken: ''
+                stripeToken: '',
+                product: 1
             }
         },
 
@@ -26,7 +34,7 @@
                     this.stripeToken = token.id;
                     this.stripeEmail = token.email;
 
-                    this.$http.post('/purchases', this.$data)
+                    this.$http.post('/purchases/' + this.product, this.$data)
                         .then(response => alert('Complete. thanks for your payment.'));
                 }
             });
@@ -34,11 +42,16 @@
 
         methods: {
             buy() {
+                let product = this.findProductById(this.product);
                 this.stripe.open({
-                    name: 'My Book',
-                    description: 'Some description about my book',
-                    amount: 2500
+                    name: product.name,
+                    description: product.description,
+                    amount: product.price
                 });
+            },
+
+            findProductById(id) {
+                return this.products.find(product => product.id == id);
             }
         }
     }
