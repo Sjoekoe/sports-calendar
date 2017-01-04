@@ -74,7 +74,7 @@ class Info implements Jsonable
         $info = [
             'csrf' => $this->session->getToken(),
             'services' => [
-
+                'stripe' => $this->config->get('services.stripe.key'),
             ],
         ];
 
