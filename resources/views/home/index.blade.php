@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="text-center m-t-lg">
-                    <checkout-form :products="{{ $products }}"></checkout-form>
+                    <checkout-form :plans="{{ $plans }}"></checkout-form>
                 </div>
             </div>
         </div>

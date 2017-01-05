@@ -1,24 +1,24 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Products\ProductRepository;
+use App\Plans\PlanRepository;
 
 class HomeController extends Controller
 {
     /**
-     * @var \App\Products\ProductRepository
+     * @var \App\Plans\PlanRepository
      */
-    private $products;
+    private $plans;
 
-    public function __construct(ProductRepository $products)
+    public function __construct(PlanRepository $plans)
     {
-        $this->products = $products;
+        $this->plans = $plans;
     }
 
     public function index()
     {
-        $products = $this->products->all();
+        $plans = $this->plans->all();
 
-        return view('home.index', compact('products'));
+        return view('home.index', compact('plans'));
     }
 }
