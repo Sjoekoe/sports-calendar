@@ -46,6 +46,16 @@ interface Account
     public function timeFormat();
 
     /**
+     * @return bool
+     */
+    public function isSubscribed();
+
+    /**
+     * @return \App\Accounts\Subscriptions\AccountSubscription
+     */
+    public function subscription();
+
+    /**
      * @return \Carbon\Carbon
      */
     public function createdAt();

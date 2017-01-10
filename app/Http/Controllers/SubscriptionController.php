@@ -1,25 +1,40 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Accounts\AccountRepository;
+use App\Accounts\Requests\SubscriptionRequest;
+use App\Accounts\Subscriptions\SubscriptionHandler;
 use App\Plans\Plan;
 use Exception;
-use Illuminate\Http\Request;
-use Stripe\Customer;
 
 class SubscriptionController extends Controller
 {
-    public function store(Request $request, Plan $plan)
+    /**
+     * @var \App\Accounts\AccountRepository
+     */
+    private $accounts;
+
+    /**
+     * @var \App\Accounts\Subscriptions\SubscriptionHandler
+     */
+    private $subscriptionHandler;
+
+    public function __construct(AccountRepository $accounts, SubscriptionHandler $subscriptionHandler)
+    {
+        $this->accounts = $accounts;
+        $this->subscriptionHandler = $subscriptionHandler;
+    }
+
+    public function store(SubscriptionRequest $request, Plan $plan)
     {
         try {
-            Customer::create([
-                'email' => $request->get('stripeEmail'),
-                'source' => $request->get('stripeToken'),
-                'plan' => $plan->name()
-            ]);
+            $this->subscriptionHandler->handle($plan, $request->all());
         } catch (Exception $e) {
             return response()->json(['status' => $e->getMessage()], 422);
         }
 
-        return 'all done';
+        return [
+            'status' => 'Success',
+        ];
     }
 }
