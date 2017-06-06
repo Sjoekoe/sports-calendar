@@ -1,5 +1,5 @@
 <?php
 
-Route::get('/', function () {
-    return view('home.index');
-});
+Route::post('/subscriptions/{plan}', 'SubscriptionController@store');
+
+Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);

@@ -82,4 +82,19 @@ class EloquentAccountRepository implements AccountRepository
 
         return $account;
     }
+
+    /**
+     * @param \App\Accounts\Account $account
+     * @param array $values
+     * @return \App\Accounts\Account
+     */
+    public function subscribe(Account $account, array $values)
+    {
+        $account->stripe_id = $values['stripe_id'];
+        $account->stripe_active = $values['stripe_active'];
+
+        $account->save();
+
+        return $account;
+    }
 }

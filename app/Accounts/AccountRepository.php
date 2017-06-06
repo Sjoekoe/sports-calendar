@@ -32,4 +32,11 @@ interface AccountRepository
      * @return \App\Accounts\Account
      */
     public function update(Account $account, array $values);
+
+    /**
+     * @param \App\Accounts\Account $account
+     * @param array $values
+     * @return \App\Accounts\Account
+     */
+    public function subscribe(Account $account, array $values);
 }

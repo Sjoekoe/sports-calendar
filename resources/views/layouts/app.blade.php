@@ -36,11 +36,13 @@
     </div>
     <!-- End wrapper-->
 
-<script src="js/app.js" type="text/javascript"></script>
-
-@stack('scripts')
   <script>
       window.scheduler = window.scheduler || {!! \App\Info\Facades\Info::toJson() !!}
   </script>
+  <script src="https://checkout.stripe.com/checkout.js"></script>
+<script src="js/app.js" type="text/javascript"></script>
+
+@stack('scripts')
+
 </body>
 </html>

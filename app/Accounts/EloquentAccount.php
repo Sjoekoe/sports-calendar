@@ -2,6 +2,7 @@
 namespace App\Accounts;
 
 use App\Accommodations\EloquentAccommodation;
+use App\Accounts\Subscriptions\AccountSubscription;
 use App\Models\StandardModel;
 use App\Teams\EloquentTeam;
 use App\Types\EloquentType;
@@ -71,5 +72,21 @@ class EloquentAccount extends Model implements Account
     public function timeFormat()
     {
         return $this->time_format;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isSubscribed()
+    {
+        return $this->stripe_active;
+    }
+
+    /**
+     * @return \App\Accounts\Subscriptions\AccountSubscription
+     */
+    public function subscription()
+    {
+        return new AccountSubscription($this);
     }
 }

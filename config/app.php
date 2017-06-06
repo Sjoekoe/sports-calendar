@@ -186,6 +186,8 @@ return [
         App\Database\DatabaseServiceProvider::class,
         App\Dates\DateTimeServiceProvider::class,
         App\JWT\TokenServiceProvider::class,
+        App\Plans\PlanServiceProvider::class,
+        App\Products\ProductServiceProvider::class,
         App\Reservations\ReservationServiceProvider::class,
         App\Rosters\RosterServiceProvider::class,
         App\Sports\SportServiceProvider::class,
