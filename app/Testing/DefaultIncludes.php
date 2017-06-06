@@ -3,6 +3,7 @@ namespace App\Testing;
 
 use App\Accounts\Account;
 use App\Athletes\Athlete;
+use App\Teams\Team;
 use App\Users\User;
 
 trait DefaultIncludes
@@ -58,6 +59,24 @@ trait DefaultIncludes
             'userRelation' => [
                 'data' => $this->includedUser($athlete->user())
             ]
+        ], $attributes);
+    }
+
+    /**
+     * @param \App\Teams\Team $team
+     * @param array $attributes
+     * @return array
+     */
+    public function includedTeam(Team $team, array $attributes = [])
+    {
+        return array_merge([
+            'id' => $team->id(),
+            'accountRelation' => [
+                'data' => $this->includedAccount($team->account()),
+            ],
+            'userRelation' => [
+                'data' => $this->includedUser($team->user()),
+            ],
         ], $attributes);
     }
 }

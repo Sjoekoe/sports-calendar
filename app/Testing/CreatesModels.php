@@ -3,6 +3,7 @@ namespace App\Testing;
 
 use App\Accounts\Account;
 use App\Athletes\Athlete;
+use App\Teams\Team;
 use App\Users\User;
 use Carbon\Carbon;
 
@@ -50,6 +51,18 @@ trait CreatesModels
             'email' => 'athlete@test.com',
             'phone' => '12345678',
             'birthday' => Carbon::now(),
+        ], $attributes));
+    }
+
+    /**
+     * @param array $attributes
+     * @return \App\Teams\Team
+     */
+    public function createTeam(array $attributes = [])
+    {
+        return $this->modelFactory->create(Team::class, array_merge([
+            'account_id' => $this->createAccount()->id(),
+            'user_id' => $this->createUser()->id(),
         ], $attributes));
     }
 }

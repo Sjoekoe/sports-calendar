@@ -28,5 +28,12 @@ $api->version('v1', function (Router $api) {
             $api->put('/{account}', ['as' => 'update', 'uses' => 'AccountController@update']);
             $api->delete('/{account}', ['as' => 'delete', 'uses' => 'AccountController@delete']);
         });
+
+        $api->group(['as' => 'teams', 'prefix' => '{account}/teams'], function (Router $api) {
+            $api->get('/', ['as' => 'index', 'uses' => 'TeamController@index']);
+            $api->post('/', ['as' => 'store', 'uses' => 'TeamController@store']);
+            $api->get('/{team}', ['as' => 'show', 'uses' => 'TeamController@show']);
+            $api->delete('/{team}', ['as' => 'delete', 'uses' => 'TeamController@delete']);
+        });
     });
 });

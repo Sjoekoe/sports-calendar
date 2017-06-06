@@ -1,6 +1,8 @@
 <?php
 namespace App\Teams;
 
+use App\Accounts\Account;
+
 class EloquentTeamRepository implements TeamRepository
 {
     /**
@@ -22,5 +24,41 @@ class EloquentTeamRepository implements TeamRepository
         return $this->team
             ->where('id', $id)
             ->first();
+    }
+
+    /**
+     * @param \App\Accounts\Account $account
+     * @param int $limit
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
+    public function findByAccountPaginated(Account $account, $limit = 10)
+    {
+        return $this->team
+            ->where('account_id', $account->id())
+            ->paginate($limit);
+    }
+
+    /**
+     * @param \App\Accounts\Account $account
+     * @param array $values
+     * @return \App\Teams\Team
+     */
+    public function create(Account $account, array $values)
+    {
+        $team = new EloquentTeam();
+        $team->account_id = $account->id();
+        $team->user_id = $values['user_id'];
+
+        $team->save();
+
+        return $team;
+    }
+
+    /**
+     * @param \App\Teams\Team $team
+     */
+    public function delete(Team $team)
+    {
+        $team->delete();
     }
 }

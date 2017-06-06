@@ -16,11 +16,27 @@ class EloquentTeam extends Model implements Team
     protected $table = self::TABLE;
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function userRelation()
+    {
+        return $this->belongsTo(EloquentUser::class, 'user_id', 'id');
+    }
+
+    /**
      * @return \App\Users\User
      */
     public function user()
     {
         return $this->belongsTo(EloquentUser::class, 'user_id', 'id')->first();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function accountRelation()
+    {
+        return $this->belongsTo(EloquentAccount::class, 'account_id', 'id');
     }
 
     /**
